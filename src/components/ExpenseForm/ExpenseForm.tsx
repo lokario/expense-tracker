@@ -18,11 +18,13 @@ interface ExpenseFormProps {
 function ExpenseForm({ onExpenseSubmit }: ExpenseFormProps) {
 	const {
 		register,
+		reset,
 		handleSubmit,
 		formState: { errors, isValid },
 	} = useForm<FormData>({ resolver: zodResolver(schema) });
 
 	const onSubmit = (data: FieldValues) => {
+		reset();
 		onExpenseSubmit(data);
 	};
 
