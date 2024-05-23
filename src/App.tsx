@@ -4,13 +4,13 @@ import ExpensesList from "./components/ExpensesList";
 import Expense from "./components/expense";
 
 function App() {
-	const [lastExpenseId, setLastExpenseId] = useState(0);
 	const [expenses, setExpenses] = useState<Expense[]>([
 		{ id: 1, description: "Milk", amount: 5, category: "Groceries" },
 		{ id: 2, description: "Eggs", amount: 10, category: "Groceries" },
 		{ id: 3, description: "Electricity", amount: 100, category: "Utilities" },
-		{ id: 1, description: "Movies", amount: 15, category: "Entertainment" },
+		{ id: 4, description: "Movies", amount: 15, category: "Entertainment" },
 	]);
+	const [lastExpenseId, setLastExpenseId] = useState(expenses[expenses.length - 1].id);
 
 	const handleNewExpense = (expense: Expense) => {
 		const expenseId = lastExpenseId + 1;
