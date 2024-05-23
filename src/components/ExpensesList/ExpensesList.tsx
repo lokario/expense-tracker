@@ -57,6 +57,7 @@ function ExpensesList({ expenses, onExpenseRemove }: ExpensesListProps) {
 									<button
 										type="button"
 										className="btn btn-outline-danger"
+										onClick={() => onExpenseRemove(expense.id)}
 									>
 										Delete
 									</button>

@@ -18,7 +18,9 @@ function App() {
 		setExpenses([...expenses, { ...expense, id: expenseId }]);
 	};
 
-	const handleExpenseRemove = expenseId => {};
+	const handleExpenseRemove = (expenseId: number) => {
+		setExpenses(expenses.filter(expense => expense.id != expenseId));
+	};
 
 	return (
 		<div className="container d-flex flex-column row-gap-5 p-4">
