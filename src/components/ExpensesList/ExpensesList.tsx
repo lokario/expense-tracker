@@ -1,3 +1,4 @@
+import { useState } from "react";
 import CATEGORIES from "../categories";
 import Expense from "../expense";
 
@@ -7,6 +8,12 @@ interface ExpensesListProps {
 }
 
 function ExpensesList({ expenses, onExpenseRemove }: ExpensesListProps) {
+	const [filter, setFilter] = useState("all");
+
+	const onChangeFilter = (value: string) => {
+		setFilter(value);
+	};
+
 	const formatter = new Intl.NumberFormat("en-US", {
 		style: "currency",
 		currency: "USD",
@@ -17,7 +24,8 @@ function ExpensesList({ expenses, onExpenseRemove }: ExpensesListProps) {
 			<select
 				className="form-select mb-3"
 				id="category"
-				defaultValue="all"
+				value={filter}
+				onChange={event => onChangeFilter(event.target.value)}
 			>
 				<option
 					key="all"
@@ -45,25 +53,27 @@ function ExpensesList({ expenses, onExpenseRemove }: ExpensesListProps) {
 				</thead>
 				<tbody>
 					{expenses.map(expense => {
-						return (
-							<tr
-								key={expense.id}
-								className="align-middle"
-							>
-								<td>{expense.description}</td>
-								<td>{formatter.format(expense.amount)}</td>
-								<td>{expense.category}</td>
-								<td>
-									<button
-										type="button"
-										className="btn btn-outline-danger"
-										onClick={() => onExpenseRemove(expense.id)}
-									>
-										Delete
-									</button>
-								</td>
-							</tr>
-						);
+						if (filter == "all" || expense.category == filter) {
+							return (
+								<tr
+									key={expense.id}
+									className="align-middle"
+								>
+									<td>{expense.description}</td>
+									<td>{formatter.format(expense.amount)}</td>
+									<td>{expense.category}</td>
+									<td>
+										<button
+											type="button"
+											className="btn btn-outline-danger"
+											onClick={() => onExpenseRemove(expense.id)}
+										>
+											Delete
+										</button>
+									</td>
+								</tr>
+							);
+						}
 					})}
 				</tbody>
 			</table>

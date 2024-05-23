@@ -2,6 +2,7 @@ import { FieldValues, useForm } from "react-hook-form";
 import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import CATEGORIES from "../categories";
+import Expense from "../expense";
 
 const schema = z.object({
 	description: z.string({ message: "Description must be a string" }).min(3, { message: "Description must be at least 3 characters" }),
@@ -12,7 +13,7 @@ const schema = z.object({
 type FormData = z.infer<typeof schema>;
 
 interface ExpenseFormProps {
-	onExpenseSubmit: (expense: object) => void;
+	onExpenseSubmit: (expense: Expense) => void;
 }
 
 function ExpenseForm({ onExpenseSubmit }: ExpenseFormProps) {
@@ -25,7 +26,7 @@ function ExpenseForm({ onExpenseSubmit }: ExpenseFormProps) {
 
 	const onSubmit = (data: FieldValues) => {
 		reset();
-		onExpenseSubmit(data);
+		onExpenseSubmit(data as Expense);
 	};
 
 	return (
