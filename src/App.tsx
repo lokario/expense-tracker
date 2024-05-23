@@ -3,7 +3,7 @@ import ExpensesList from "./components/ExpensesList";
 
 function App() {
 	return (
-		<div>
+		<div className="container p-4">
 			<ExpenseForm />
 			<ExpensesList />
 		</div>
