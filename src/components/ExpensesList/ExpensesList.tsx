@@ -20,6 +20,7 @@ function ExpensesList({ expenses, onExpenseRemove }: ExpensesListProps) {
 	});
 
 	const filteredExpenses = expenses.filter(expense => filter == "all" || expense.category == filter);
+	const totalAmount = formatter.format(filteredExpenses.reduce((acc, value) => acc + value.amount, 0));
 
 	return (
 		<div className="card p-4">
@@ -78,6 +79,12 @@ function ExpensesList({ expenses, onExpenseRemove }: ExpensesListProps) {
 							);
 						})}
 					</tbody>
+					<tfoot>
+						<tr>
+							<td>Total</td>
+							<td>{totalAmount}</td>
+						</tr>
+					</tfoot>
 				</table>
 			)}
 			{filteredExpenses.length == 0 && <p className="fs-5 text-center">There are no expenses to display</p>}
