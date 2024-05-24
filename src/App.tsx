@@ -23,7 +23,7 @@ function App() {
 	};
 
 	return (
-		<div className="container d-flex flex-column row-gap-5 p-4">
+		<div className="container d-flex flex-column row-gap-4 p-4">
 			<ExpenseForm onExpenseSubmit={handleNewExpense} />
 			<ExpensesList
 				expenses={expenses}

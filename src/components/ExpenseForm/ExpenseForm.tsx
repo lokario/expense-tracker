@@ -30,7 +30,12 @@ function ExpenseForm({ onExpenseSubmit }: ExpenseFormProps) {
 	};
 
 	return (
-		<form onSubmit={handleSubmit(onSubmit)}>
+		<form
+			onSubmit={handleSubmit(onSubmit)}
+			className="card p-4"
+		>
+			<h3 className="text-center mb-2">Add Expenses</h3>
+
 			<div className="form-group mb-3">
 				<label
 					htmlFor="description"

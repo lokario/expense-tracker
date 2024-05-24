@@ -22,7 +22,8 @@ function ExpensesList({ expenses, onExpenseRemove }: ExpensesListProps) {
 	const filteredExpenses = expenses.filter(expense => filter == "all" || expense.category == filter);
 
 	return (
-		<div>
+		<div className="card p-4">
+			<h3 className="text-center mb-4">Table of Expenses</h3>
 			<select
 				className="form-select mb-3"
 				id="category"
