@@ -101,7 +101,7 @@ function ExpenseForm({ onExpenseSubmit }: ExpenseFormProps) {
 				type="submit"
 				className="btn btn-primary"
 			>
-				Submit
+				Add
 			</button>
 		</form>
 	);
