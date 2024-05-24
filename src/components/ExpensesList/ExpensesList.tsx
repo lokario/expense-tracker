@@ -19,6 +19,8 @@ function ExpensesList({ expenses, onExpenseRemove }: ExpensesListProps) {
 		currency: "USD",
 	});
 
+	const filteredExpenses = expenses.filter(expense => filter == "all" || expense.category == filter);
+
 	return (
 		<div>
 			<select
@@ -42,18 +44,18 @@ function ExpensesList({ expenses, onExpenseRemove }: ExpensesListProps) {
 					</option>
 				))}
 			</select>
-			<table className="table table-bordered">
-				<thead>
-					<tr>
-						<th>Description</th>
-						<th>Amount</th>
-						<th>Category</th>
-						<th>Action</th>
-					</tr>
-				</thead>
-				<tbody>
-					{expenses.map(expense => {
-						if (filter == "all" || expense.category == filter) {
+			{filteredExpenses.length > 0 && (
+				<table className="table table-bordered">
+					<thead>
+						<tr>
+							<th>Description</th>
+							<th>Amount</th>
+							<th>Category</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						{filteredExpenses.map(expense => {
 							return (
 								<tr
 									key={expense.id}
@@ -73,10 +75,11 @@ function ExpensesList({ expenses, onExpenseRemove }: ExpensesListProps) {
 									</td>
 								</tr>
 							);
-						}
-					})}
-				</tbody>
-			</table>
+						})}
+					</tbody>
+				</table>
+			)}
+			{filteredExpenses.length == 0 && <p className="fs-5 text-center">There are no expenses to display</p>}
 		</div>
 	);
 }

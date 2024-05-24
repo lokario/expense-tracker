@@ -10,7 +10,7 @@ function App() {
 		{ id: 3, description: "Electricity", amount: 100, category: "Utilities" },
 		{ id: 4, description: "Movies", amount: 15, category: "Entertainment" },
 	]);
-	const [lastExpenseId, setLastExpenseId] = useState(expenses[expenses.length - 1].id);
+	const [lastExpenseId, setLastExpenseId] = useState(expenses.length > 0 ? expenses[expenses.length - 1].id : 0);
 
 	const handleNewExpense = (expense: Expense) => {
 		const expenseId = lastExpenseId + 1;
