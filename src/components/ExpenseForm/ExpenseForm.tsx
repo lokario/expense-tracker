@@ -7,7 +7,9 @@ import Expense from "../expense";
 const schema = z.object({
 	description: z.string({ message: "Description must be a string" }).min(3, { message: "Description must be at least 3 characters" }),
 	amount: z.number({ required_error: "Amount is required", invalid_type_error: "Amount must be a number" }).min(1, { message: "Amount must be at 1 or higher" }),
-	category: z.enum(CATEGORIES),
+	category: z.enum(CATEGORIES, {
+		errorMap: () => ({ message: "Category is required" }),
+	}),
 });
 
 type FormData = z.infer<typeof schema>;
